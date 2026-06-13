@@ -28,17 +28,19 @@ Design: editorial/document aesthetic, redacted financial document. Cream paper (
 - `Footer.jsx` — dark navy section, "Get early access to Decoded" headline, email form → POST /api/subscribe, sonner toasts
 
 ## What's Implemented (2026-06-13)
-- Full single-page landing with 7 sections
+- Full single-page landing with 8 sections (Nav, Hero, Stats, **LiveDemo**, DocumentCard, Features, SocialProof, Ticker, Footer)
 - MongoDB-backed email signup, idempotent on duplicates
+- **Live LLM-powered "Decode" widget**: paste a sentence → Claude Sonnet 4.6 (via Emergent universal key) returns plain-English translation, 0-100 Confidence Index, and flagged hedge phrases visually struck through on the original quote
+- Stats bar (500+ / 12 min / 94%) with hairline borders between Hero and Document Card
 - Sonner toasts (success/error) styled to match palette
 - Responsive at 390 / 768 / 1920 px (verified, zero horizontal overflow)
 - All `data-testid` attributes per design spec
-- Tested: 8/8 backend + 100% frontend (see `/app/test_reports/iteration_1.json`)
+- Tested: 14/14 backend + 100% frontend (`/app/test_reports/iteration_2.json`)
 
 ## Backlog / Next Action Items
-- **P1**: Add a "decode my own transcript" textarea/upload flow (currently CTA only scrolls to signup)
+- **P1**: Add per-IP rate limiting to `/api/decode` before public launch (currently unthrottled — could burn LLM credits)
 - **P1**: Admin dashboard view of subscribers (export CSV)
+- **P2**: Persist decode requests + results to MongoDB for analytics + a public "wall of decodes" social-proof feed
 - **P2**: Add unique index on `subscribers.email` at MongoDB level
-- **P2**: Live demo widget — paste a sentence, get an instant LLM-powered translation (would need LLM integration)
-- **P2**: Add OG/meta tags + favicon for shareability
+- **P2**: Add OG/meta tags + favicon for shareability ("Decoded — what they said vs. what it actually means")
 - **P3**: A/B test alternate hero copy
