@@ -1,0 +1,82 @@
+{
+  "project_name": "Decoded",
+  "theme": "Light",
+  "archetype": "Custom Editorial / Financial Document",
+  "design_principles": [
+    "Redacted Document Aesthetic: Heavy use of typography, stark contrast, and visible structural elements (borders, grid lines).",
+    "Color Constraints: Exclusively use the defined palette (Cream, Navy, Red). Do not introduce grays or other colors.",
+    "Typography as UI: Rely on font pairing (Serif + Mono) rather than background colors or cards to establish hierarchy.",
+    "Data-Test IDs: Every interactive element MUST have a descriptive data-testid."
+  ],
+  "colors": {
+    "background_paper": "#F1EFE7",
+    "text_navy_ink": "#0B1F2A",
+    "accent_stamp_red": "#C1442D",
+    "background_footer": "#0B1F2A",
+    "text_inverse": "#F1EFE7",
+    "border_navy": "#0B1F2A"
+  },
+  "typography": {
+    "fonts": [
+      { "family": "Cormorant Garamond", "type": "serif", "usage": "Headlines and Hero copy" },
+      { "family": "IBM Plex Mono", "type": "monospace", "usage": "Translations, labels, tags, and the Decoded stamp" }
+    ],
+    "hierarchy": {
+      "h1": "text-5xl md:text-7xl font-serif font-bold text-[#0B1F2A] tracking-tight leading-none",
+      "h2": "text-3xl md:text-5xl font-serif font-bold text-[#0B1F2A] tracking-tight leading-tight",
+      "h3": "text-xl md:text-2xl font-serif font-semibold text-[#0B1F2A]",
+      "body": "text-lg md:text-xl font-serif text-[#0B1F2A] leading-relaxed",
+      "mono_label": "text-sm font-mono text-[#C1442D] tracking-widest uppercase",
+      "mono_body": "text-base font-mono text-[#0B1F2A] leading-relaxed"
+    }
+  },
+  "layout_and_spacing": {
+    "global_background": "bg-[#F1EFE7] min-h-screen relative overflow-hidden",
+    "section_padding": "py-20 md:py-32 px-6",
+    "container_max": "max-w-6xl mx-auto"
+  },
+  "components": [
+    {
+      "name": "Navigation Bar",
+      "details": "Sticky top nav. bg-[#F1EFE7]/90 backdrop-blur-md border-b-2 border-[#0B1F2A]. Logo 'DECODED' in heavy serif. CTA 'Request Access' (border-2 border-[#0B1F2A] text-[#0B1F2A] hover:bg-[#0B1F2A] hover:text-[#F1EFE7] px-6 py-2 transition-colors font-mono text-sm uppercase).",
+      "test_ids": ["nav-logo", "nav-request-access-btn"]
+    },
+    {
+      "name": "Hero Section",
+      "details": "Massive H1 headline 'What they said. What it actually means.'. Short description below in large Serif. Primary CTA 'Decode a Transcript' (bg-[#C1442D] text-[#F1EFE7] hover:bg-[#A33925] px-8 py-4 font-mono uppercase tracking-wide transition-colors). Clicking CTA scrolls smoothly to Footer email signup.",
+      "test_ids": ["hero-headline", "hero-cta-btn"]
+    },
+    {
+      "name": "Centerpiece Document Card",
+      "details": "A physical-looking paper document container (bg-[#F1EFE7] border-2 border-[#0B1F2A] shadow-[12px_12px_0px_#0B1F2A] p-8 md:p-16 relative w-full max-w-4xl mx-auto). Contains 3 examples stacked vertically with borders between them. For each: corporate jargon in Serif with a red strikethrough (line-through decoration-[#C1442D] decoration-4). Below it, label 'TRANSLATION →' in red Mono. Below that, plain English translation in Mono. Include a rotated 'DECODED' stamp graphic (absolute top-8 right-8 border-4 border-[#C1442D] text-[#C1442D] font-mono font-bold text-3xl px-6 py-2 rotate-[15deg] opacity-90 mix-blend-multiply).",
+      "test_ids": ["document-card", "translation-item-1", "translation-item-2", "translation-item-3", "decoded-stamp"]
+    },
+    {
+      "name": "Features Section",
+      "details": "3-column grid (grid-cols-1 md:grid-cols-3 gap-12 border-t-2 border-[#0B1F2A] pt-16 mt-20). Columns: '01 Detect', '02 Translate', '03 Score'. Each has a mono numeric label in red ('01'), followed by a serif heading, and serif body text describing the feature. Top of each column can have a top-border to feel like a document table.",
+      "test_ids": ["feature-detect", "feature-translate", "feature-score"]
+    },
+    {
+      "name": "Social Proof Section",
+      "details": "Centered Serif headline: 'Trusted by those who move markets'. Below it, a flex wrap row of audience labels (pills/tags). Audience labels: 'Buy-Side Analysts', 'Fintwit', 'Newsletter Writers', 'Equity Research'. Pill style: border-2 border-[#0B1F2A] text-[#0B1F2A] font-mono text-sm md:text-base px-6 py-2 rounded-full.",
+      "test_ids": ["social-proof-headline", "audience-label-1", "audience-label-2", "audience-label-3", "audience-label-4"]
+    },
+    {
+      "name": "Footer / Email Signup",
+      "details": "Dark mode section. bg-[#0B1F2A] text-[#F1EFE7] py-24. Large Serif heading 'Get early access to Decoded'. Form with email input (bg-transparent border-b-2 border-[#F1EFE7] text-[#F1EFE7] placeholder:text-[#F1EFE7]/50 focus:outline-none py-3 text-xl font-mono w-full max-w-md) and a red CTA button 'Notify Me' (bg-[#C1442D] text-[#F1EFE7] font-mono uppercase px-8 py-4 mt-8 block w-fit hover:bg-[#A33925] transition-colors).",
+      "test_ids": ["footer-heading", "email-input", "notify-me-btn", "footer-form"]
+    }
+  ],
+  "motion_and_animations": {
+    "page_load": "Subtle fade up for hero elements using Framer Motion (initial={{opacity:0, y:20}} animate={{opacity:1, y:0}}).",
+    "document_card": "On hover, the shadow extends slightly and card translates (-translate-y-1).",
+    "stamp": "Stamp fades and stamps down (scale from 1.5 to 1, rotate from 0 to 15deg) when the document card comes into viewport (whileInView).",
+    "scrolling": "Use smooth scrolling for anchor links (e.g. Hero CTA to Footer)."
+  },
+  "developer_instructions": {
+    "styling": "Use strict Tailwind arbitrary values or add the provided colors to tailwind.config.js (`bg-paper`, `text-navy`, `accent-red`).",
+    "fonts": "Import 'Cormorant Garamond' and 'IBM Plex Mono' from Google Fonts in index.css. Apply globally where necessary.",
+    "api": "Create a FastAPI endpoint (`POST /api/subscribe`) that accepts an email and stores it in MongoDB (using motor/pymongo). The React frontend should submit to this endpoint and display a success toast using Sonner. Provide graceful error handling.",
+    "libraries": "framer-motion for interactions, sonner for toasts, lucide-react for minimal icons if strictly needed (though typography is preferred)."
+  }
+}
