@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "@/components/decoded/Nav";
 import Hero from "@/components/decoded/Hero";
+import Stats from "@/components/decoded/Stats";
 import DocumentCard from "@/components/decoded/DocumentCard";
 import Features from "@/components/decoded/Features";
 import SocialProof from "@/components/decoded/SocialProof";
@@ -18,6 +19,7 @@ export default function Landing() {
       <Nav onRequestAccess={scrollToSignup} />
       <main>
         <Hero onCTAClick={scrollToSignup} />
+        <Stats />
         <DocumentCard />
         <Features />
         <SocialProof />
